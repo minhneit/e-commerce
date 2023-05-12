@@ -5,7 +5,6 @@ import { BsBag } from 'react-icons/bs';
 
 const Header = () => {
     const { isOpen, setIsOpen } = useContext(SidebarContext);
-    console.log(isOpen);
     return (
         <header className="bg-pink-200">
             <div>Header</div>

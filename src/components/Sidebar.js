@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+
 import { IoMdArrowForward } from 'react-icons/io';
 import { FiTrash2 } from 'react-icons/fi';
 
+//import component
 import CartItem from '../components/CartItem';
+//import sidebar context
 import { SidebarContext } from '../contexts/SidebarContext';
-import { useContext } from 'react';
+//import cart context
+import { CartContext } from '../contexts/CartContext';
 
 const Sidebar = () => {
     const { isOpen, handleClose } = useContext(SidebarContext);
+    const { cart } = useContext(CartContext);
+    console.log(cart);
     return (
         <div
             className={`${
@@ -19,6 +26,12 @@ const Sidebar = () => {
                 <div onClick={handleClose} className="cursor-pointer w-8 h-8 flex justify-center items-center">
                     <IoMdArrowForward className="text-2xl" />
                 </div>
+            </div>
+
+            <div className="overflow-y-auto">
+                {cart.map((item) => (
+                    <CartItem key={item.id} item={item} />
+                ))}
             </div>
         </div>
     );
