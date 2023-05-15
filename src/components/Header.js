@@ -23,8 +23,9 @@ const Header = () => {
         >
             <div className="container flex mx-auto items-center justify-between h-full">
                 <Link to={'/'}>
-                    <div>
+                    <div className="flex items-center justify-center">
                         <img className="w-[40px]" src={Logo} alt="" />
+                        <span className="font-semibold ml-2 text-xl ">Alex T</span>
                     </div>
                 </Link>
                 <div onClick={() => setIsOpen(!isOpen)} className="cursor-pointer flex relative ">
