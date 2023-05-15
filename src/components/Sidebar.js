@@ -12,7 +12,7 @@ import { SidebarContext } from '../contexts/SidebarContext';
 import { CartContext } from '../contexts/CartContext';
 
 const Sidebar = () => {
-    const { cart, clearCart, total } = useContext(CartContext);
+    const { cart, clearCart, total, itemAmount } = useContext(CartContext);
     const { isOpen, handleClose } = useContext(SidebarContext);
     return (
         <div
@@ -21,7 +21,7 @@ const Sidebar = () => {
             } w-full bg-white px-4 fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20  px -4 lg:px-[35px]`}
         >
             <div className="flex items-center justify-between py-6 border-b ">
-                <div className="font-sans uppercase text-base font-semibold">Giỏ hàng</div>
+                <div className="font-sans uppercase text-base font-semibold">Giỏ hàng ({itemAmount})</div>
                 <div onClick={handleClose} className="cursor-pointer w-8 h-8 flex justify-center items-center">
                     <IoMdArrowForward className="text-2xl" />
                 </div>
