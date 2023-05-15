@@ -9,6 +9,24 @@ const CartProvider = ({ children }) => {
     // amount item
     const [itemAmount, setItemAmount] = useState(0);
 
+    // total price state
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        const result = cart.reduce((accumulator, currentItem) => {
+            return accumulator + currentItem.price * currentItem.amount;
+        }, 0);
+        setTotal(result);
+    });
+
+    //update item amount cart
+    useEffect(() => {
+        const amount = cart.reduce((accumulator, currentItem) => {
+            return accumulator + currentItem.amount;
+        }, 0);
+        setItemAmount(amount);
+    }, [cart]);
+
     //add to cart
     const addToCart = (product, id) => {
         const newItem = { ...product, amount: 1 };
@@ -51,6 +69,8 @@ const CartProvider = ({ children }) => {
         addToCart(cartItem, id);
     };
 
+    //decrese amount
+
     const decreseAmount = (id) => {
         const cartItem = cart.find((item) => item.id === id);
         if (cartItem) {
@@ -68,9 +88,11 @@ const CartProvider = ({ children }) => {
         }
     };
 
+    //total item sidebar
+
     return (
         <CartContext.Provider
-            value={{ cart, addToCart, removeFromCart, clearCart, increseAmount, decreseAmount, itemAmount }}
+            value={{ cart, addToCart, removeFromCart, clearCart, increseAmount, decreseAmount, itemAmount, total }}
         >
             {children}
         </CartContext.Provider>
